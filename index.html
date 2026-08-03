@@ -20,7 +20,7 @@
     --radius:20px;
   }
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;scroll-snap-type:y proximity;}
   body{
     font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
     background:var(--paper);color:var(--ink);
@@ -48,7 +48,11 @@
   nav a.active{background:var(--green);color:#fff;}
 
   main{max-width:880px;margin:0 auto;padding:0 22px;}
-  section{padding:88px 0 32px;}
+  section{
+    padding:88px 0 40px;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    scroll-snap-align:start;
+  }
 
   /* ---------- common ---------- */
   .kicker{
@@ -240,7 +244,7 @@
 
   /* ---------- closing ---------- */
   .closing{
-    min-height:88svh;display:flex;flex-direction:column;justify-content:center;text-align:center;
+    min-height:100svh;display:flex;flex-direction:column;justify-content:center;text-align:center;
     padding-top:60px;
   }
   .closing .pre{font-size:clamp(16px,3vw,19px);color:var(--ink-soft);font-weight:600;margin-bottom:20px;}
@@ -253,6 +257,40 @@
   footer{
     text-align:center;padding:48px 0 56px;color:var(--ink-mute);font-size:12.5px;font-weight:600;
     border-top:1px solid var(--line);margin-top:70px;letter-spacing:.04em;
+  }
+  /* 아이패드 가로(낮은 화면 높이) 최적화: 한 화면에 한 섹션이 들어오도록 여백 압축 */
+  @media(max-height:920px){
+    section{padding:68px 0 26px;}
+    .hero{padding:88px 0 48px;}
+    .hero h1{font-size:clamp(30px,5.6vw,46px);margin-bottom:16px;}
+    .hero .sub{margin-bottom:30px;}
+    .hero-stats{padding:20px 10px;}
+    h2{font-size:clamp(24px,4.2vw,32px);margin-bottom:9px;}
+    .lead{font-size:clamp(14.5px,2.2vw,16.5px);}
+    .grid2{margin-top:20px;gap:10px;}
+    .why-card{padding:15px 18px;}
+    .why-card .ico{width:36px;height:36px;font-size:17px;margin-bottom:8px;}
+    .why-card h3{font-size:16px;margin-bottom:5px;}
+    .why-card p{font-size:13.5px;}
+    .punch{margin-top:16px;padding:20px 24px;}
+    .punch p{font-size:clamp(15px,2.4vw,18px);}
+    .axis-wrap{margin-top:24px;padding:28px 20px 22px;}
+    .steps{margin-top:22px;}
+    .step + .step{margin-top:26px;}
+    .step + .step::before{top:-23px;}
+    .step-head{padding:16px 20px;}
+    .note{margin-top:20px;padding:18px 22px;}
+    .logic{margin-top:20px;gap:9px;}
+    .logic-row{padding:14px 18px;}
+    .logic-row p{font-size:13.5px;}
+    .logic-row h3{font-size:15.5px;margin-bottom:4px;}
+    .three-years{margin-top:16px;padding:22px 24px;}
+    .three-years .big{font-size:clamp(40px,7vw,56px);}
+    .three-years p{margin-top:8px;font-size:14px;}
+    .proof{margin-top:24px;padding:24px 24px;}
+    .now{margin-top:12px;padding:15px 20px;}
+    .vision{margin-top:18px;padding:26px 26px;}
+    .tap-hint{margin-top:9px;}
   }
 </style>
 </head>
