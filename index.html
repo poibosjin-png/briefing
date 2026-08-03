@@ -66,7 +66,13 @@
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
   .reveal.on{opacity:1;transform:none;}
   /* 데스크톱 전용 줄바꿈: 모바일에서는 자연스러운 줄바꿈으로 전환 */
-  @media(max-width:640px){ br.d{display:none;} }
+  @media(max-width:640px){
+    br.d{display:none;}
+    .hero-stats{flex-wrap:wrap;row-gap:16px;}
+    .hstat{flex:1 1 45%;}
+    .hstat + .hstat{border-left:none;}
+    .hstat:nth-child(even){border-left:1px dashed var(--line);}
+  }
 
   /* ---------- hero ---------- */
   .hero{
@@ -275,10 +281,14 @@
     .punch{margin-top:16px;padding:20px 24px;}
     .punch p{font-size:clamp(15px,2.4vw,18px);}
     .axis-wrap{margin-top:24px;padding:28px 20px 22px;}
-    .steps{margin-top:22px;}
-    .step + .step{margin-top:26px;}
-    .step + .step::before{top:-23px;}
-    .step-head{padding:16px 20px;}
+    .steps{margin-top:18px;}
+    .step + .step{margin-top:20px;}
+    .step + .step::before{top:-20px;font-size:11px;}
+    .step-head{padding:12px 18px;}
+    .step-no{width:42px;height:42px;border-radius:13px;}
+    .step-no b{font-size:16px;}
+    .step-tit h3{font-size:16px;}
+    .step-amt b{font-size:19px;}
     .note{margin-top:20px;padding:18px 22px;}
     .logic{margin-top:20px;gap:9px;}
     .logic-row{padding:14px 18px;}
@@ -317,6 +327,7 @@
     <p class="sub">문화순례길을 축으로 — 관광두레에서 관광DMO까지, 국비·도비 중심의 단계별 성장 전략과 그 자격을 만드는 주민 중심의 준비.</p>
     <div class="hero-stats reveal">
       <div class="hstat"><div class="num"><span class="count" data-to="3">0</span><span class="unit">억</span></div><div class="lbl">관광두레 · 선정 완료<br>한국관광공사 3년</div></div>
+      <div class="hstat"><div class="num"><span class="count" data-to="2">0</span><span class="unit">억</span></div><div class="lbl">야행 달빛사마골<br>국가유산청 · 수주 완료</div></div>
       <div class="hstat"><div class="num"><span class="count" data-to="3">0</span><span class="unit">억</span></div><div class="lbl">피크닉·로컬콘텐츠<br>경기도 · 유치 목표</div></div>
       <div class="hstat gold"><div class="num"><span class="count" data-to="10">0</span><span class="unit">억+</span></div><div class="lbl">관광DMO 5년<br>2028 신청 목표</div></div>
     </div>
@@ -400,6 +411,21 @@
       <div class="step reveal" data-acc>
         <div class="step-head">
           <div class="step-no"><small>STEP</small><b>2</b></div>
+          <div class="step-tit"><h3>야행 '달빛사마골' <span class="done-badge">수주 완료</span></h3><div class="src">국가유산청 (국비) · 광주문화원 협력</div></div>
+          <div class="step-amt"><b>2억</b><span>2026 개최</span></div>
+          <span class="chev">▼</span>
+        </div>
+        <div class="step-body"><div class="step-body-in">
+          <ul>
+            <li>국가유산청 야행 사업 '달빛사마골' <b>2억 수주</b> — 광주시 관광사업을 일으키는 마중물 사업</li>
+            <li>개최 일정: 2026. 9. 24(목) ~ 26(토) / 10. 2(금) ~ 4(일)</li>
+            <li>광주문화원과 함께 사업 진행 중</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="step reveal" data-acc>
+        <div class="step-head">
+          <div class="step-no"><small>STEP</small><b>3</b></div>
           <div class="step-tit"><h3>경기로컬여행 파트너스 <span class="done-badge">선정 완료</span></h3><div class="src">경기도 (도비)</div></div>
           <div class="step-amt"><b>3억</b><span>유치 목표</span></div>
           <span class="chev">▼</span>
@@ -415,7 +441,7 @@
       </div>
       <div class="step hl reveal" data-acc>
         <div class="step-head">
-          <div class="step-no"><small>STEP</small><b>3</b></div>
+          <div class="step-no"><small>STEP</small><b>4</b></div>
           <div class="step-tit"><h3>관광DMO <span class="goal-badge">2028 신청 목표</span></h3><div class="src">문화순례길 상시 운영조직</div></div>
           <div class="step-amt"><b>10억+</b><span>5년 · 신청 목표</span></div>
           <span class="chev">▼</span>
@@ -488,7 +514,7 @@
 
   <!-- ASK -->
   <section class="closing" id="ask">
-    <p class="pre reveal">관광두레, 그리고 경기로컬여행 파트너스 기업 선정 — <br class="d">관광DMO를 위한 준비는 모두 마쳤습니다.</p>
+    <p class="pre reveal">관광두레 선정, 야행 '달빛사마골' 수주, 경기로컬여행 파트너스 기업 선정 — <br class="d">관광DMO를 위한 준비는 모두 마쳤습니다.</p>
     <h2 class="reveal">광주시를 역사·문화·자연 <br class="d"><b>관광의 중심지</b>로 만들겠습니다.</h2>
     <p class="after reveal">2028년 관광DMO 신청까지 — <br class="d">광주시의 지원이 <b>문화순례길의 완성</b>을 이어갑니다.</p>
   </section>
