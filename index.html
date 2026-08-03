@@ -61,6 +61,8 @@
   .lead{font-size:clamp(15.5px,2.6vw,18px);color:var(--ink-soft);max-width:620px;}
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
   .reveal.on{opacity:1;transform:none;}
+  /* 데스크톱 전용 줄바꿈: 모바일에서는 자연스러운 줄바꿈으로 전환 */
+  @media(max-width:640px){ br.d{display:none;} }
 
   /* ---------- hero ---------- */
   .hero{
@@ -273,7 +275,7 @@
   <!-- HERO -->
   <section class="hero" id="top">
     <div class="date">2026. 8. 3 · 정책 브리핑</div>
-    <h1>광주 관광의 성장 구조를<br><em>외부 재원</em>으로 만듭니다</h1>
+    <h1>광주 관광의 성장 구조를 <br class="d"><em>외부 재원</em>으로 만듭니다</h1>
     <p class="sub">문화순례길을 축으로 — 관광두레에서 관광DMO까지, 국비·도비 중심의 단계별 성장 전략과 그 자격을 만드는 주민 중심의 준비.</p>
     <div class="hero-stats reveal">
       <div class="hstat"><div class="num"><span class="count" data-to="3">0</span><span class="unit">억</span></div><div class="lbl">관광두레 · 선정 완료<br>한국관광공사 3년</div></div>
@@ -313,7 +315,7 @@
       </div>
     </div>
     <div class="punch reveal">
-      <p>이 네 가지 자원을 하나의 길로 잇는 것 —<br>그것이 <b>문화순례길</b>입니다.</p>
+      <p>이 네 가지 자원을 하나의 길로 잇는 것 — <br class="d">그것이 <b>문화순례길</b>입니다.</p>
     </div>
   </section>
 
@@ -321,7 +323,7 @@
   <section id="path">
     <div class="reveal">
       <div class="kicker">ONE PATH</div>
-      <h2>문화순례길이<br>광주 관광을 관통합니다</h2>
+      <h2>문화순례길이 <br class="d">광주 관광을 관통합니다</h2>
       <p class="lead">남한산성의 역사, 팔당의 자연, 곤지암의 도자를 잇는 하나의 길. 앞으로의 모든 관광사업은 이 길 위에서 이어집니다.</p>
     </div>
     <div class="axis-wrap reveal">
@@ -401,7 +403,7 @@
   <section id="action">
     <div class="reveal">
       <div class="theme-tag">주제 2</div>
-      <h2>관광DMO를 위한 사전 준비,<br>주민 중심 액션그룹</h2>
+      <h2>관광DMO를 위한 사전 준비, <br class="d">주민 중심 액션그룹</h2>
       <p class="lead">관광DMO의 선행 요건은 '지역이 주도하는 조직'입니다. 광주는 문화자치의 경험 위에서 그 조직을 준비합니다.</p>
     </div>
     <div class="logic">
@@ -428,13 +430,13 @@
   <section id="made">
     <div class="reveal">
       <div class="theme-tag">주제 3</div>
-      <h2>'메이드 인 광주'<br>관광·축제 사업</h2>
+      <h2>'메이드 인 광주' <br class="d">관광·축제 사업</h2>
       <p class="lead">주민이 만든 축제가 경기도 대표가 된 경험이, 광주에는 이미 있습니다.</p>
     </div>
     <div class="proof reveal">
       <div class="badge">검증된 성공 사례</div>
       <div class="yr">2018</div>
-      <h3>남한산성문화제, <b>주민 중심의 기획</b>으로<br>경기대표 관광축제 선정</h3>
+      <h3>남한산성문화제, <b>주민 중심의 기획</b>으로 <br class="d">경기대표 관광축제 선정</h3>
       <p>외부의 힘이 아니라 주민의 기획력으로 도달한 성과입니다. 주민조직은 이미 한 번 증명했습니다.</p>
     </div>
     <div class="now reveal">
@@ -442,15 +444,15 @@
     </div>
     <div class="vision reveal">
       <div class="v-tag">MADE IN GWANGJU</div>
-      <h3>주민의 손으로 만들고, 성과는 지역에 남는 축제.<br>다시, 경기대표 관광축제로.</h3>
+      <h3>주민의 손으로 만들고, 성과는 지역에 남는 축제. <br class="d">다시, 경기대표 관광축제로.</h3>
     </div>
   </section>
 
   <!-- ASK -->
   <section class="closing" id="ask">
-    <p class="pre reveal">관광두레, 그리고 경기로컬여행 파트너스 기업 선정 —<br>관광DMO를 위한 준비는 모두 마쳤습니다.</p>
-    <h2 class="reveal">광주시를 역사·문화·자연<br><b>관광의 중심지</b>로 만들겠습니다.</h2>
-    <p class="after reveal">2028년 관광DMO 신청까지 —<br>광주시의 지원이 <b>문화순례길의 완성</b>을 이어갑니다.</p>
+    <p class="pre reveal">관광두레, 그리고 경기로컬여행 파트너스 기업 선정 — <br class="d">관광DMO를 위한 준비는 모두 마쳤습니다.</p>
+    <h2 class="reveal">광주시를 역사·문화·자연 <br class="d"><b>관광의 중심지</b>로 만들겠습니다.</h2>
+    <p class="after reveal">2028년 관광DMO 신청까지 — <br class="d">광주시의 지원이 <b>문화순례길의 완성</b>을 이어갑니다.</p>
   </section>
 
 </main>
