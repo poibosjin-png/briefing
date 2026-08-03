@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>광주시 관광사업 개발 브리핑</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --ink:#1C2B26;
+    --ink-soft:#4A5A54;
+    --ink-mute:#7E8C86;
+    --green:#1E5B4F;
+    --green-deep:#143E36;
+    --gold:#C9A227;
+    --gold-soft:#F3EAC9;
+    --paper:#FAF9F5;
+    --card:#FFFFFF;
+    --line:#E4E2DA;
+    --radius:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;scroll-snap-type:y proximity;}
+  body{
+    font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    background:var(--paper);color:var(--ink);
+    line-height:1.6;word-break:keep-all;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- top nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(250,249,245,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:880px;margin:0 auto;padding:0 20px;
+    display:flex;align-items:center;gap:8px;height:56px;
+    overflow-x:auto;scrollbar-width:none;
+  }
+  .nav-inner::-webkit-scrollbar{display:none;}
+  .nav-brand{font-weight:800;font-size:14px;color:var(--green-deep);white-space:nowrap;margin-right:auto;letter-spacing:-.2px;}
+  nav a{
+    text-decoration:none;color:var(--ink-mute);font-size:13.5px;font-weight:600;
+    padding:7px 12px;border-radius:99px;white-space:nowrap;transition:all .25s;
+  }
+  nav a.active{background:var(--green);color:#fff;}
+
+  main{max-width:880px;margin:0 auto;padding:0 22px;}
+  section{
+    padding:88px 0 40px;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    scroll-snap-align:start;
+  }
+
+  /* ---------- common ---------- */
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--gold);
+    text-transform:uppercase;margin-bottom:16px;
+  }
+  .kicker::before{content:"";width:22px;height:2px;background:var(--gold);border-radius:2px;}
+  h2{font-size:clamp(26px,5.4vw,38px);font-weight:800;letter-spacing:-.5px;line-height:1.28;margin-bottom:14px;}
+  .lead{font-size:clamp(15.5px,2.6vw,18px);color:var(--ink-soft);max-width:620px;}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.on{opacity:1;transform:none;}
+  /* 데스크톱 전용 줄바꿈: 모바일에서는 자연스러운 줄바꿈으로 전환 */
+  @media(max-width:640px){
+    br.d{display:none;}
+    .hero-stats{flex-wrap:wrap;row-gap:16px;}
+    .hstat{flex:1 1 45%;}
+    .hstat + .hstat{border-left:none;}
+    .hstat:nth-child(even){border-left:1px dashed var(--line);}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+    padding:110px 0 60px;position:relative;
+  }
+  .hero .date{font-size:14px;font-weight:700;color:var(--gold);letter-spacing:.12em;margin-bottom:20px;}
+  .hero h1{
+    font-size:clamp(34px,7.6vw,58px);font-weight:900;letter-spacing:-1.2px;line-height:1.22;
+    margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal;color:var(--green);}
+  .hero .sub{font-size:clamp(16px,2.8vw,19px);color:var(--ink-soft);max-width:600px;margin-bottom:44px;}
+  .hero-stats{
+    display:flex;align-items:stretch;gap:0;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 10px;box-shadow:0 10px 34px rgba(20,62,54,.08);
+  }
+  .hstat{flex:1;text-align:center;padding:0 8px;}
+  .hstat + .hstat{border-left:1px dashed var(--line);}
+  .hstat .num{font-size:clamp(26px,6vw,42px);font-weight:900;color:var(--green-deep);letter-spacing:-1px;line-height:1.1;}
+  .hstat .num .unit{font-size:.55em;font-weight:800;margin-left:2px;}
+  .hstat.gold .num{color:var(--gold);}
+  .hstat .lbl{font-size:12.5px;font-weight:700;color:var(--ink-mute);margin-top:8px;line-height:1.4;}
+  .scroll-hint{
+    position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+    color:var(--ink-mute);font-size:12px;font-weight:600;letter-spacing:.14em;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    animation:bob 2.2s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+  /* ---------- opening cards ---------- */
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:34px;}
+  @media(max-width:560px){.grid2{grid-template-columns:1fr;}}
+  .why-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px;transition:transform .3s,box-shadow .3s;
+  }
+  .why-card:active{transform:scale(.98);}
+  .why-card .ico{
+    width:46px;height:46px;border-radius:14px;background:var(--gold-soft);
+    display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;
+  }
+  .why-card h3{font-size:18px;font-weight:800;margin-bottom:8px;letter-spacing:-.3px;}
+  .why-card h3 span{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.1em;display:block;margin-bottom:5px;}
+  .why-card p{font-size:14.5px;color:var(--ink-soft);}
+  .punch{
+    margin-top:26px;background:var(--green-deep);color:#fff;border-radius:var(--radius);
+    padding:34px 30px;position:relative;overflow:hidden;
+  }
+  .punch::after{
+    content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;
+    background:rgba(201,162,39,.16);
+  }
+  .punch p{font-size:clamp(17px,3.2vw,21px);font-weight:700;line-height:1.55;max-width:560px;position:relative;z-index:1;}
+  .punch p b{color:#F0D479;font-weight:800;}
+
+  /* ---------- path axis ---------- */
+  .axis-wrap{margin-top:34px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:36px 22px 30px;}
+  .axis{display:flex;align-items:flex-start;position:relative;gap:6px;}
+  .axis::before{content:"";position:absolute;top:26px;left:10%;right:10%;height:3px;background:linear-gradient(90deg,var(--gold),var(--green));border-radius:3px;}
+  .axis-node{flex:1;text-align:center;position:relative;z-index:1;}
+  .axis-node .dot{width:52px;height:52px;border-radius:50%;background:var(--gold-soft);border:3px solid var(--gold);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:21px;}
+  .axis-node:last-child .dot{border-color:var(--green);background:#E3EFEA;}
+  .axis-node h4{font-size:14.5px;font-weight:800;letter-spacing:-.3px;}
+  .axis-node p{font-size:12.5px;color:var(--ink-mute);font-weight:600;margin-top:4px;line-height:1.5;}
+  .axis-cap{text-align:center;margin-top:24px;font-size:14px;font-weight:700;color:var(--green-deep);}
+  .axis-cap b{color:var(--gold);}
+
+  /* ---------- roadmap ---------- */
+  .theme-tag{
+    display:inline-block;background:var(--green);color:#fff;font-size:12.5px;font-weight:800;
+    letter-spacing:.1em;padding:6px 14px;border-radius:99px;margin-bottom:14px;
+  }
+  .steps{margin-top:30px;display:flex;flex-direction:column;gap:0;}
+  .step{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;transition:box-shadow .3s;position:relative;
+  }
+  .step + .step{margin-top:34px;}
+  .step + .step::before{
+    content:"▼";position:absolute;top:-27px;left:50%;transform:translateX(-50%);
+    color:var(--gold);font-size:13px;
+  }
+  .step-head{
+    display:flex;align-items:center;gap:16px;padding:22px 22px;cursor:pointer;user-select:none;
+  }
+  .step-no{
+    flex-shrink:0;width:52px;height:52px;border-radius:16px;background:var(--gold-soft);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-weight:900;color:var(--green-deep);
+  }
+  .step-no small{font-size:9.5px;font-weight:800;letter-spacing:.08em;color:var(--gold);}
+  .step-no b{font-size:20px;line-height:1;}
+  .step-tit{flex:1;min-width:0;}
+  .step-tit h3{font-size:clamp(17px,3.4vw,20px);font-weight:800;letter-spacing:-.3px;}
+  .step-tit .src{font-size:13px;color:var(--ink-mute);font-weight:600;margin-top:3px;}
+  .step-amt{text-align:right;flex-shrink:0;}
+  .step-amt b{font-size:clamp(19px,4vw,26px);font-weight:900;color:var(--green);letter-spacing:-.5px;display:block;line-height:1.15;}
+  .step-amt span{font-size:11.5px;color:var(--ink-mute);font-weight:700;}
+  .step.hl .step-amt b{color:var(--gold);}
+  .chev{flex-shrink:0;color:var(--ink-mute);transition:transform .35s;font-size:13px;margin-left:2px;}
+  .step.open .chev{transform:rotate(180deg);}
+  .step-body{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+  .step-body-in{padding:0 22px 24px;border-top:1px dashed var(--line);margin:0 0;padding-top:18px;}
+  .step-body-in ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .step-body-in li{font-size:14.5px;color:var(--ink-soft);padding-left:20px;position:relative;}
+  .step-body-in li::before{content:"";position:absolute;left:4px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  .step.hl{border:1.5px solid var(--gold);box-shadow:0 12px 36px rgba(201,162,39,.16);}
+  .done-badge{display:inline-block;background:#E3EFEA;color:var(--green);font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;margin-left:8px;vertical-align:2px;white-space:nowrap;}
+  .goal-badge{display:inline-block;background:var(--gold-soft);color:#A07F14;font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;margin-left:8px;vertical-align:2px;white-space:nowrap;}
+  .tap-hint{font-size:12px;color:var(--ink-mute);font-weight:600;margin-top:12px;text-align:center;}
+  .note{
+    margin-top:30px;background:var(--gold-soft);border-radius:var(--radius);padding:26px 26px;
+    display:flex;gap:14px;align-items:flex-start;
+  }
+  .note .n-ico{font-size:20px;line-height:1.4;}
+  .note p{font-size:15px;color:var(--green-deep);font-weight:600;line-height:1.65;}
+  .note p b{color:var(--gold);font-weight:800;}
+
+  /* ---------- action group ---------- */
+  .logic{margin-top:30px;display:flex;flex-direction:column;gap:14px;}
+  .logic-row{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 24px;display:flex;gap:18px;align-items:flex-start;
+  }
+  .logic-no{
+    flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;margin-top:2px;
+  }
+  .logic-row h3{font-size:16.5px;font-weight:800;margin-bottom:6px;letter-spacing:-.3px;}
+  .logic-row p{font-size:14.5px;color:var(--ink-soft);}
+  .three-years{
+    margin-top:26px;background:var(--green-deep);border-radius:var(--radius);
+    padding:40px 30px;text-align:center;color:#fff;position:relative;overflow:hidden;
+  }
+  .three-years::before{
+    content:"";position:absolute;left:-50px;bottom:-60px;width:200px;height:200px;border-radius:50%;
+    background:rgba(201,162,39,.14);
+  }
+  .three-years .big{
+    font-size:clamp(46px,11vw,76px);font-weight:900;color:#F0D479;letter-spacing:-2px;line-height:1.05;
+  }
+  .three-years .big small{font-size:.42em;font-weight:800;}
+  .three-years p{margin-top:12px;font-size:15.5px;font-weight:600;color:rgba(255,255,255,.86);position:relative;z-index:1;}
+
+  /* ---------- made in gwangju ---------- */
+  .proof{
+    margin-top:30px;background:var(--card);border:1.5px solid var(--gold);border-radius:var(--radius);
+    padding:30px 28px;position:relative;box-shadow:0 12px 36px rgba(201,162,39,.14);
+  }
+  .badge{
+    position:absolute;top:-13px;left:24px;background:var(--gold);color:#fff;
+    font-size:12px;font-weight:800;letter-spacing:.08em;padding:5px 14px;border-radius:99px;
+  }
+  .proof .yr{font-size:15px;font-weight:800;color:var(--gold);margin-bottom:6px;}
+  .proof h3{font-size:clamp(19px,4vw,24px);font-weight:800;letter-spacing:-.4px;line-height:1.4;margin-bottom:10px;}
+  .proof h3 b{color:var(--green);}
+  .proof p{font-size:14.5px;color:var(--ink-soft);}
+  .now{
+    margin-top:16px;background:transparent;border:1px dashed var(--line);border-radius:var(--radius);
+    padding:20px 24px;
+  }
+  .now p{font-size:14px;color:var(--ink-mute);line-height:1.7;}
+  .now p b{color:var(--ink-soft);font-weight:700;}
+  .vision{
+    margin-top:26px;border-radius:var(--radius);padding:38px 30px;text-align:center;
+    background:linear-gradient(135deg,var(--green) 0%,var(--green-deep) 100%);color:#fff;
+    position:relative;overflow:hidden;
+  }
+  .vision::after{content:"";position:absolute;right:-30px;top:-50px;width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.06);}
+  .vision .v-tag{font-size:13px;font-weight:800;letter-spacing:.22em;color:#F0D479;margin-bottom:14px;}
+  .vision h3{font-size:clamp(21px,4.6vw,30px);font-weight:900;letter-spacing:-.5px;line-height:1.42;position:relative;z-index:1;}
+
+  /* ---------- closing ---------- */
+  .closing{
+    min-height:100svh;display:flex;flex-direction:column;justify-content:center;text-align:center;
+    padding-top:60px;
+  }
+  .closing .pre{font-size:clamp(16px,3vw,19px);color:var(--ink-soft);font-weight:600;margin-bottom:20px;}
+  .closing h2{font-size:clamp(28px,6.4vw,46px);line-height:1.32;letter-spacing:-1px;}
+  .closing h2 b{color:var(--green);}
+  .closing .after{
+    margin:30px auto 0;max-width:520px;font-size:15px;color:var(--ink-mute);line-height:1.75;
+  }
+  .closing .after b{color:var(--gold);font-weight:800;}
+  footer{
+    text-align:center;padding:48px 0 56px;color:var(--ink-mute);font-size:12.5px;font-weight:600;
+    border-top:1px solid var(--line);margin-top:70px;letter-spacing:.04em;
+  }
+  /* 아이패드 가로(낮은 화면 높이) 최적화: 한 화면에 한 섹션이 들어오도록 여백 압축 */
+  @media(max-height:920px){
+    section{padding:68px 0 26px;}
+    .hero{padding:88px 0 48px;}
+    .hero h1{font-size:clamp(30px,5.6vw,46px);margin-bottom:16px;}
+    .hero .sub{margin-bottom:30px;}
+    .hero-stats{padding:20px 10px;}
+    h2{font-size:clamp(24px,4.2vw,32px);margin-bottom:9px;}
+    .lead{font-size:clamp(14.5px,2.2vw,16.5px);}
+    .grid2{margin-top:20px;gap:10px;}
+    .why-card{padding:15px 18px;}
+    .why-card .ico{width:36px;height:36px;font-size:17px;margin-bottom:8px;}
+    .why-card h3{font-size:16px;margin-bottom:5px;}
+    .why-card p{font-size:13.5px;}
+    .punch{margin-top:16px;padding:20px 24px;}
+    .punch p{font-size:clamp(15px,2.4vw,18px);}
+    .axis-wrap{margin-top:24px;padding:28px 20px 22px;}
+    .steps{margin-top:18px;}
+    .step + .step{margin-top:20px;}
+    .step + .step::before{top:-20px;font-size:11px;}
+    .step-head{padding:12px 18px;}
+    .step-no{width:42px;height:42px;border-radius:13px;}
+    .step-no b{font-size:16px;}
+    .step-tit h3{font-size:16px;}
+    .step-amt b{font-size:19px;}
+    .note{margin-top:20px;padding:18px 22px;}
+    .logic{margin-top:20px;gap:9px;}
+    .logic-row{padding:14px 18px;}
+    .logic-row p{font-size:13.5px;}
+    .logic-row h3{font-size:15.5px;margin-bottom:4px;}
+    .three-years{margin-top:16px;padding:22px 24px;}
+    .three-years .big{font-size:clamp(40px,7vw,56px);}
+    .three-years p{margin-top:8px;font-size:14px;}
+    .proof{margin-top:24px;padding:24px 24px;}
+    .now{margin-top:12px;padding:15px 20px;}
+    .vision{margin-top:18px;padding:26px 26px;}
+    .tap-hint{margin-top:9px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">광주 관광 브리핑</span>
+    <a href="#why" class="nav-link">개요</a>
+    <a href="#path" class="nav-link">순례길</a>
+    <a href="#roadmap" class="nav-link">로드맵</a>
+    <a href="#action" class="nav-link">액션그룹</a>
+    <a href="#made" class="nav-link">메이드인 광주</a>
+    <a href="#ask" class="nav-link">제안</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="date">2026. 8. 3 · 정책 브리핑</div>
+    <h1>광주 관광의 성장 구조를 <br class="d"><em>외부 재원</em>으로 만듭니다</h1>
+    <p class="sub">문화순례길을 축으로 — 관광두레에서 관광DMO까지, 국비·도비 중심의 단계별 성장 전략과 그 자격을 만드는 주민 중심의 준비.</p>
+    <div class="hero-stats reveal">
+      <div class="hstat"><div class="num"><span class="count" data-to="3">0</span><span class="unit">억</span></div><div class="lbl">관광두레 · 선정 완료<br>한국관광공사 3년</div></div>
+      <div class="hstat"><div class="num"><span class="count" data-to="2">0</span><span class="unit">억</span></div><div class="lbl">야행 달빛사마골<br>국가유산청 · 수주 완료</div></div>
+      <div class="hstat"><div class="num"><span class="count" data-to="3">0</span><span class="unit">억</span></div><div class="lbl">피크닉·로컬콘텐츠<br>경기도 · 유치 목표</div></div>
+      <div class="hstat gold"><div class="num"><span class="count" data-to="10">0</span><span class="unit">억+</span></div><div class="lbl">관광DMO 5년<br>2028 신청 목표</div></div>
+    </div>
+    <div class="scroll-hint">SCROLL<span>▼</span></div>
+  </section>
+
+  <!-- WHY -->
+  <section id="why">
+    <div class="reveal">
+      <div class="kicker">OPENING</div>
+      <h2>왜 지금, 광주 관광인가</h2>
+      <p class="lead">광주는 수도권에서 가장 가까운 역사·자연·전통문화의 도시입니다. 관광지가 되기 위한 조건은 이미 갖춰져 있습니다.</p>
+    </div>
+    <div class="grid2">
+      <div class="why-card reveal">
+        <div class="ico">🚉</div>
+        <h3><span>ACCESS</span>서울 인접</h3>
+        <p>서울 도심에서 한 시간, 수도권 2,600만 배후 수요를 품은 최근접 관광 목적지.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="ico">🏯</div>
+        <h3><span>HISTORY</span>살아있는 역사</h3>
+        <p>유네스코 세계유산 남한산성. 수도권에서 역사를 직접 걷고 체험할 수 있는 도시.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="ico">🌿</div>
+        <h3><span>NATURE</span>청정 자연</h3>
+        <p>팔당호와 경안천 습지생태공원. 수도권이 지켜온 물과 숲의 풍경.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="ico">🏺</div>
+        <h3><span>CULTURE</span>전통문화의 중심</h3>
+        <p>조선백자 관요의 본향. 곤지암 도자·공예로 이어지는 전통문화의 뿌리.</p>
+      </div>
+    </div>
+    <div class="punch reveal">
+      <p>이 네 가지 자원을 하나의 길로 잇는 것 — <br class="d">그것이 <b>문화순례길</b>입니다.</p>
+    </div>
+  </section>
+
+  <!-- PATH -->
+  <section id="path">
+    <div class="reveal">
+      <div class="kicker">ONE PATH</div>
+      <h2>문화순례길이 <br class="d">광주 관광을 관통합니다</h2>
+      <p class="lead">남한산성의 역사, 팔당의 자연, 곤지암의 도자를 잇는 하나의 길. 앞으로의 모든 관광사업은 이 길 위에서 이어집니다.</p>
+    </div>
+    <div class="axis-wrap reveal">
+      <div class="axis">
+        <div class="axis-node"><div class="dot">👣</div><h4>관광두레</h4><p>길 위의 사람<br>주민사업체</p></div>
+        <div class="axis-node"><div class="dot">🎪</div><h4>경기로컬여행 파트너스</h4><p>길 위의 콘텐츠<br>야행 · 피크닉</p></div>
+        <div class="axis-node"><div class="dot">🏛️</div><h4>관광DMO</h4><p>길의 운영자<br>로컬관광센터</p></div>
+      </div>
+      <div class="axis-cap"><b>사람 → 콘텐츠 → 운영조직</b> — 문화순례길 위에 순서대로 쌓입니다</div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <div class="reveal">
+      <div class="theme-tag">주제 1</div>
+      <h2>광주시 관광 성장 로드맵</h2>
+      <p class="lead">문화순례길을 중심으로, 국비와 도비를 단계적으로 끌어오는 성장 경로입니다. 각 단계는 다음 단계의 '자격'이 됩니다.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal" data-acc>
+        <div class="step-head">
+          <div class="step-no"><small>STEP</small><b>1</b></div>
+          <div class="step-tit"><h3>관광두레 <span class="done-badge">선정 완료</span></h3><div class="src">한국관광공사 (국비)</div></div>
+          <div class="step-amt"><b>3억</b><span>지난 3년간<br>(2021~2024년)</span></div>
+          <span class="chev">▼</span>
+        </div>
+        <div class="step-body"><div class="step-body-in">
+          <ul>
+            <li>문화순례길 위에서 활동할 주민사업체 발굴·육성</li>
+            <li>지역 관광 창업 생태계의 기초 체력 확보</li>
+            <li>광주시 재정 부담 없이 국비로 첫 단추를 끼우는 단계</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="step reveal" data-acc>
+        <div class="step-head">
+          <div class="step-no"><small>STEP</small><b>2</b></div>
+          <div class="step-tit"><h3>야행 '달빛사마골' <span class="done-badge">수주 완료</span></h3><div class="src">국가유산청 (국비) · 광주문화원 협력</div></div>
+          <div class="step-amt"><b>2억</b><span>2026 개최</span></div>
+          <span class="chev">▼</span>
+        </div>
+        <div class="step-body"><div class="step-body-in">
+          <ul>
+            <li>국가유산청 야행 사업 '달빛사마골' <b>2억 수주</b> — 광주시 관광사업을 일으키는 마중물 사업</li>
+            <li>개최 일정: 2026. 9. 24(목) ~ 26(토) / 10. 2(금) ~ 4(일)</li>
+            <li>광주문화원과 함께 사업 진행 중</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="step reveal" data-acc>
+        <div class="step-head">
+          <div class="step-no"><small>STEP</small><b>3</b></div>
+          <div class="step-tit"><h3>경기로컬여행 파트너스 <span class="done-badge">선정 완료</span></h3><div class="src">경기도 (도비)</div></div>
+          <div class="step-amt"><b>3억</b><span>유치목표<br>(2028년)</span></div>
+          <span class="chev">▼</span>
+        </div>
+        <div class="step-body"><div class="step-body-in">
+          <ul>
+            <li>경기로컬여행 파트너스 기업 선정 완료 — 사업 유치 자격 확보</li>
+            <li>경기도 피크닉 사업·로컬관광콘텐츠 사업 유치 추진 (3억 규모)</li>
+            <li style="font-weight:800;color:var(--ink)">지자체가 함께 참여하면 공모 평가에서 정성적 가점 — 광주시의 참여가 유치 가능성을 높입니다</li>
+            <li>야행(夜行) 등 문화순례길 콘텐츠를 만들며 실적을 쌓는 단계</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="step hl reveal" data-acc>
+        <div class="step-head">
+          <div class="step-no"><small>STEP</small><b>4</b></div>
+          <div class="step-tit"><h3>관광DMO <span class="goal-badge">2028 신청 목표</span></h3><div class="src">문화순례길 상시 운영조직</div></div>
+          <div class="step-amt"><b>10억+</b><span>2029년 유치목표<br>(5년간 사업 운영)</span></div>
+          <span class="chev">▼</span>
+        </div>
+        <div class="step-body"><div class="step-body-in">
+          <ul>
+            <li><b>2028년 신청 목표</b> — 그 전까지 주민조직과 사업 실적을 갖추는 것이 과제</li>
+            <li>5년간 약 10억 규모(국비·지방비 1:1 매칭) — 로컬관광센터 운영 기반</li>
+            <li>문화순례길을 상시 기획·운영하는 전담조직 확보</li>
+            <li>DMO 실적을 발판으로 계획공모형 지역관광개발사업(5년·총 60억 규모) 등 대형 국비 공모 도전</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+    <div class="tap-hint">각 단계를 터치하면 상세 내용이 열립니다</div>
+    <div class="note reveal">
+      <div class="n-ico">💡</div>
+      <p>광주시가 만드는 것은 예산이 아니라 <b>'자격'</b>입니다. 단계를 밟을수록 더 큰 외부 재원의 문이 열립니다.</p>
+    </div>
+  </section>
+
+  <!-- ACTION GROUP -->
+  <section id="action">
+    <div class="reveal">
+      <div class="theme-tag">주제 2</div>
+      <h2>관광DMO를 위한 사전 준비, <br class="d">주민 중심 액션그룹</h2>
+      <p class="lead">관광DMO의 선행 요건은 '지역이 주도하는 조직'입니다. 광주는 문화자치의 경험 위에서 그 조직을 준비합니다.</p>
+    </div>
+    <div class="logic">
+      <div class="logic-row reveal">
+        <div class="logic-no">1</div>
+        <div><h3>DMO의 선행 요건</h3><p>지역이 주도하는 민간 거버넌스 — 주민조직이 있어야 DMO 유치가 가능합니다.</p></div>
+      </div>
+      <div class="logic-row reveal">
+        <div class="logic-no">2</div>
+        <div><h3>광주의 방식</h3><p>문화자치를 기반으로 주민 중심 액션그룹을 조직합니다. 관 주도가 아닌, 주민이 움직이는 구조.</p></div>
+      </div>
+      <div class="logic-row reveal">
+        <div class="logic-no">3</div>
+        <div><h3>광주시의 역할</h3><p>2028년 관광DMO 신청 전까지의 지원. 그 이후는 국비·도비 중심의 자립 구조로 전환됩니다.</p></div>
+      </div>
+    </div>
+    <div class="three-years reveal">
+      <div class="big">2028</div>
+      <p>관광DMO 신청의 해 — 그때까지 주민조직이 준비를 마치도록 광주시의 지원을 요청드립니다.</p>
+    </div>
+  </section>
+
+  <!-- MADE IN GWANGJU -->
+  <section id="made">
+    <div class="reveal">
+      <div class="theme-tag">주제 3</div>
+      <h2>'메이드 인 광주' <br class="d">관광·축제 사업</h2>
+      <p class="lead">주민이 만든 축제가 경기도 대표가 된 경험이, 광주에는 이미 있습니다.</p>
+    </div>
+    <div class="proof reveal">
+      <div class="badge">검증된 성공 사례</div>
+      <div class="yr">2018</div>
+      <h3>남한산성문화제, <b>주민 중심의 기획</b>으로 <br class="d">경기대표 관광축제 선정</h3>
+      <p>외부의 힘이 아니라 주민의 기획력으로 도달한 성과입니다. 주민조직은 이미 한 번 증명했습니다.</p>
+    </div>
+    <div class="now reveal">
+      <p>현재는 외부의 대행사와 방송사를 중심으로 운영되고 있어, 축제의 <b>성과와 노하우가 지역 안에 축적되기 어려운 구조</b>입니다.</p>
+    </div>
+    <div class="vision reveal">
+      <div class="v-tag">MADE IN GWANGJU</div>
+      <h3>주민의 손으로 만들고, 성과는 지역에 남는 축제. <br class="d">다시, 경기대표 관광축제로.</h3>
+    </div>
+  </section>
+
+  <!-- ASK -->
+  <section class="closing" id="ask">
+    <p class="pre reveal">관광두레 선정, 야행 '달빛사마골' 수주, 경기로컬여행 파트너스 기업 선정 — <br class="d">관광DMO를 위한 준비는 모두 마쳤습니다.</p>
+    <h2 class="reveal">광주시를 역사·문화·자연 <br class="d"><b>관광의 중심지</b>로 만들겠습니다.</h2>
+    <p class="after reveal">2028년 관광DMO 신청까지 — <br class="d">광주시의 지원이 <b>문화순례길의 완성</b>을 이어갑니다.</p>
+  </section>
+
+</main>
+
+<footer>2026. 08. 03 · 광주시 관광사업 개발 브리핑</footer>
+
+<script>
+  // reveal on scroll
+  const io = new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // count-up
+  const cio = new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      cio.unobserve(e.target);
+      const el=e.target, to=+el.dataset.to, dur=1400, t0=performance.now();
+      const tick=t=>{
+        const p=Math.min((t-t0)/dur,1), ease=1-Math.pow(1-p,3);
+        el.textContent=Math.round(to*ease);
+        if(p<1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  },{threshold:.5});
+  document.querySelectorAll('.count').forEach(el=>cio.observe(el));
+
+  // accordion steps
+  document.querySelectorAll('[data-acc]').forEach(step=>{
+    const head=step.querySelector('.step-head'), body=step.querySelector('.step-body');
+    head.addEventListener('click',()=>{
+      const open=step.classList.toggle('open');
+      body.style.maxHeight=open? body.scrollHeight+'px':'0';
+    });
+  });
+
+  // nav active state
+  const links=[...document.querySelectorAll('.nav-link')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  const nio=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  secs.forEach(s=>s&&nio.observe(s));
+</script>
+</body>
+</html>
