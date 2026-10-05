@@ -807,6 +807,10 @@
 </footer>
 
 <script>
+  // 링크로 들어오면 항상 맨 위에서 시작
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  if(!location.hash) window.scrollTo(0,0);
+
   // reveal on scroll
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
@@ -902,7 +906,7 @@
       curEl.textContent = pad(curIdx + 1);
       Array.prototype.forEach.call(thumbsEl.children, function(t, idx){
         t.classList.toggle('on', idx === curIdx);
-        if(idx === curIdx && t.scrollIntoView) t.scrollIntoView({block:'nearest', inline:'nearest'});
+        if(idx === curIdx){ var l=t.offsetLeft-thumbsEl.offsetLeft, r=l+t.offsetWidth; if(l<thumbsEl.scrollLeft) thumbsEl.scrollLeft=l-8; else if(r>thumbsEl.scrollLeft+thumbsEl.clientWidth) thumbsEl.scrollLeft=r-thumbsEl.clientWidth+8; }
       });
     }
     document.getElementById('prevBtn').addEventListener('click', function(){ show(curIdx-1); });
@@ -939,6 +943,8 @@
       sx=null;
     }, {passive:true});
   });
+
+  window.addEventListener('load', function(){ if(!location.hash) window.scrollTo(0,0); });
 </script>
 </body>
 </html>
